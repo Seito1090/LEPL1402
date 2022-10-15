@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/prgrm/LEPL1402_Introduction.iml" filepath="$PROJECT_DIR$/prgrm/LEPL1402_Introduction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prgrm1/LEPL1402_LearnException.iml" filepath="$PROJECT_DIR$/prgrm1/LEPL1402_LearnException.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StringUtils/LEPL1402_StringUtils.iml" filepath="$PROJECT_DIR$/StringUtils/LEPL1402_StringUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/cours1.iml" filepath="$PROJECT_DIR$/.idea/cours1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prgrm2/CommonElements/lepl1402sept2021.iml" filepath="$PROJECT_DIR$/prgrm2/CommonElements/lepl1402sept2021.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Convolution/lepl1402sept2021 (1).iml" filepath="$PROJECT_DIR$/Convolution/lepl1402sept2021 (1).iml" />
+    </modules>
+  </component>
+</project>
