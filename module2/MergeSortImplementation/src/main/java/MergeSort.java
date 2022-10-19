@@ -15,6 +15,23 @@ public class MergeSort {
      */
     public static void merge(int[] a, int[] aux, int lo, int mid, int hi) {
         // TODO By student
+        // Store the ordered elements in `aux`
+        int auxid = lo, i = lo, j = mid+1;
+        while(auxid <= hi) {
+            if(i <= mid && j <= hi) {
+                if(a[i] < a[j]) {
+                    aux[auxid++] = a[i++];
+                } else {
+                    aux[auxid++] = a[j++];
+                }
+            } else if(i <= mid) {
+                aux[auxid++] = a[i++];
+            } else {
+                aux[auxid++] = a[j++];
+            }
+        }
+        // Copy the relevant part of `aux` into `a`
+        System.arraycopy(aux, lo, a, lo, hi-lo+1);
     }
 
     /**
@@ -38,6 +55,12 @@ public class MergeSort {
      */
     public static void mergeSort(int a[], int [] aux,int lo, int hi) {
         // TODO By student
+        if(hi - lo > 0) {
+            int mid = (lo+hi)/2;
+            mergeSort(a, aux, lo, mid);
+            mergeSort(a, aux, mid+1, hi);
+            merge(a, aux, lo, mid, hi);
+        }
     }
 
     /**
@@ -46,6 +69,7 @@ public class MergeSort {
     public static void sort(int[] a) {
         int [] aux = new int[a.length];
         // TODO: merge the array with a recursive function
+        mergeSort(a, new int[a.length], 0,a.length-1);
     }
 
 }
