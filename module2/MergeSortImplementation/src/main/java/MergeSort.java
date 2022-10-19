@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MergeSort {
 
     /**
@@ -17,18 +19,19 @@ public class MergeSort {
         while(auxId <= hi) {
             if(i <= mid && j <= hi) {
                 if(a[i] < a[j]) {
-                    aux[auxId++] = a[i++];
+                    aux[auxId] = a[i]; auxId++; i++;
                 } else {
-                    aux[auxId++] = a[j++];
+                    aux[auxId] = a[j]; auxId++; j++;
                 }
             } else if(i <= mid) {
-                aux[auxId++] = a[i++];
+                aux[auxId] = a[i]; auxId++; i++;
             } else {
-                aux[auxId++] = a[j++];
+                aux[auxId] = a[j]; auxId++; j++;
             }
         }
-        // Copy the relevant part of `aux` into `a`
-        System.arraycopy(aux, lo, a, lo, hi-lo+1);
+
+        for (int lol = lo; lol <= hi - lo ; lol++)
+            a[lo + lol] = aux[lol];
     }
 
     /**
@@ -61,7 +64,15 @@ public class MergeSort {
      * Rearranges the array in ascending order, using the natural order
      */
     public static void sort(int[] a) {
-        mergeSort(a, new int[a.length], 0,a.length-1);
+        int[] aux = new int[a.length];
+        mergeSort(a, aux, 0,a.length-1);
+        System.out.println(Arrays.toString(aux));
+        System.out.println(Arrays.toString(a));
+
     }
 
+    public static void main(String[] args) {
+        int[] test = new int[]{4,3,-1,5,0};
+        sort(test);
+    }
 }
