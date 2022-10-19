@@ -67,8 +67,6 @@ public class MergeSort {
      * Rearranges the array in ascending order, using the natural order
      */
     public static void sort(int[] a) {
-        int [] aux = new int[a.length];
-        // TODO: merge the array with a recursive function
         mergeSort(a, new int[a.length], 0,a.length-1);
     }
 
