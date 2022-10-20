@@ -1,3 +1,4 @@
+
 import java.util.Arrays;
 
 public class MergeSort {
@@ -19,19 +20,26 @@ public class MergeSort {
         while(auxId <= hi) {
             if(i <= mid && j <= hi) {
                 if(a[i] < a[j]) {
-                    aux[auxId] = a[i]; auxId++; i++;
+                    aux[auxId++] = a[i++];
                 } else {
-                    aux[auxId] = a[j]; auxId++; j++;
+                    aux[auxId++] = a[j++];
                 }
             } else if(i <= mid) {
-                aux[auxId] = a[i]; auxId++; i++;
+                aux[auxId++] = a[i++];
             } else {
-                aux[auxId] = a[j]; auxId++; j++;
+                aux[auxId++] = a[j++];
             }
         }
 
-        for (int lol = lo; lol <= hi - lo ; lol++)
-            a[lo + lol] = aux[lol];
+
+        for (int pos = lo; pos <= hi-lo+1; pos++) {
+            if (hi-lo+1 <= lo ) {
+                a[pos+lo] = aux[pos+lo];
+            }else{
+                a[pos+lo] = aux[pos];
+            }
+
+        }
     }
 
     /**
@@ -72,7 +80,7 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        int[] test = new int[]{4,3,-1,5,0};
+        int[] test = new int[]{4,-2,1,0,10,5,6,7,9,-1};
         sort(test);
     }
 }
