@@ -28,7 +28,10 @@ class BinaryDomains():
 		"""
 
 		#BEGIN TODO
-		return []
+		a = int(x,2)
+		b = int(y,2)
+		c = a+b
+		return self.toBinary(c)
 		#END TODO
 
 	def multiply(self, x, y):
@@ -46,7 +49,10 @@ class BinaryDomains():
 			string: Résultat de la multiplication x*y en binaire.
 		"""
 		#BEGIN TODO
-		return []
+		a = int(x,2)
+		b = int(y,2)
+		c = a*b
+		return self.toBinary(c)
 		#END TODO
 
 	def inverse(self, x):
