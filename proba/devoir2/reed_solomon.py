@@ -1,3 +1,4 @@
+from operator import mul
 import numpy
 
 class BinaryDomains():
@@ -28,10 +29,7 @@ class BinaryDomains():
 		"""
 
 		#BEGIN TODO
-		a = int(x,2)
-		b = int(y,2)
-		c = a+b
-		return self.toBinary(c)
+		return "".join(str(int(x[i])^int(y[i])) for i in range(len(x)))
 		#END TODO
 
 	def multiply(self, x, y):
@@ -49,10 +47,10 @@ class BinaryDomains():
 			string: Résultat de la multiplication x*y en binaire.
 		"""
 		#BEGIN TODO
-		a = int(x,2)
-		b = int(y,2)
-		c = a*b
-		return self.toBinary(c)
+		mult = bin(mul(int(x,2),int(y,2))%256)[2:]
+		print(f'what I get: {mult}\nwhat I should get: 01100111')
+		print(f"In base 10 what I have is {int(mult,2)} vs {int('01100111',2)}")
+		return mult
 		#END TODO
 
 	def inverse(self, x):
@@ -137,3 +135,55 @@ class ReedSolomon():
 		#BEGIN TODO
 		return False,[]
 		#END TODO
+
+if __name__ == "__main__":
+	test1 = ["10100011", 
+			"10110100", 
+			"00010111"]
+	test2 = ["10101111", 
+			"11000110", 
+			"01101001"]
+	test3 = ["00010100",
+			"00000011",
+			"00010111"]
+	test4 = ["00100111",
+			"00111011",
+			"00011100"]
+	test5 = ["11001101", 
+			 "01001001", 
+			 "01100111"]
+	test6 = ["00001011",
+			 "01100101",
+			 "01010000"]
+	test7 = ["11011110",
+			"10001111",
+			"11101110"]
+	test8 = ["10000111",
+			"01100001",
+			"01011100"]
+	test9 = ["11101111", 
+			 "01001101"]
+	test10 = ["01011000", 
+			  "10100010"]
+	test11 = ["11100000",
+			  "00101010"]
+	test12 = ["11111111",
+			  "01000100"]
+
+	#1) Addition tests
+	bd = BinaryDomains()
+	assert(bd.add(test1[0],test1[1]) == test1[2])
+	assert(bd.add(test2[0],test2[1]) == test2[2])
+	assert(bd.add(test3[0],test3[1]) == test3[2])
+	assert(bd.add(test4[0],test4[1]) == test4[2])
+
+	#2) Multiply tests
+	assert(bd.multiply(test5[0],test5[1]) == test5[2])
+	assert(bd.multiply(test6[0],test6[1]) == test6[2])
+	assert(bd.multiply(test7[0],test7[1]) == test7[2])
+	assert(bd.multiply(test8[0],test8[1]) == test8[2])
+	#3) Inverse tests
+	assert(bd.inverse(test9[0]) == test9[1])
+	assert(bd.inverse(test10[0]) == test10[1])
+	assert(bd.inverse(test11[0]) == test11[1])
+	assert(bd.inverse(test12[0]) == test12[1])

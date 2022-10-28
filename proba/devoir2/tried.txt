@@ -1,0 +1,44 @@
+mult = "00000000"
+		Px = "101001101"
+		iter = 0 
+		while y != "00000000" and iter != 30:
+			if y[0] == "1":
+				mult = self.add(mult, x)
+				y = self.add(y, "00000001")
+			leftShift = "" #11001101 becomes 10011011
+			for bit in range(1,len(x)):
+				leftShift += x[bit]
+			leftShift += x[0]
+			rightShift = y[-1]   #11001101 becomes 11100110
+			for bit in range(0,len(y)-1):
+				rightShift += y[bit]
+			
+			x = self.toBinary(int(Px,2)%int(leftShift,2) )
+			y = rightShift
+			iter+=1
+
+
+mult = ''
+		tempMult = ''
+		temp = []
+		zeroes = 0
+		tempIndx = 0 
+		for j in range(len(y)-1,-1,-1):
+			tempMult = ''
+			for i in range(len(x)-1,-1,-1):
+				sum = int(x[i]) * int(y[j])
+				if sum == 0:
+					tempMult = '0' + tempMult
+				elif sum == 1:
+					tempMult = '1' + tempMult
+			tempMult = tempMult + ('0' * zeroes)
+			zeroes += 1
+			temp.append(tempMult)
+			if len(temp) == 2:
+				mult = self.add(str(temp[0]), str(temp[1]))
+			elif len(temp) > 2:
+				tempIndx = len(temp)
+				tempIndx += 1
+				mult = self.add(str(mult), str(temp[tempIndx-2]))
+			else:
+				pass
