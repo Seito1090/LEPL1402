@@ -1,4 +1,3 @@
-from operator import mul
 import numpy
 
 class BinaryDomains():
@@ -47,9 +46,17 @@ class BinaryDomains():
 			string: Résultat de la multiplication x*y en binaire.
 		"""
 		#BEGIN TODO
-		mult = bin(mul(int(x,2),int(y,2))%256)[2:]
-		print(f'what I get: {mult}\nwhat I should get: 01100111')
-		print(f"In base 10 what I have is {int(mult,2)} vs {int('01100111',2)}")
+		Px = "101001101"
+		mult = "00000000"
+		while y != "00000000":
+			if y[-1] == '1':
+				mult = self.add(mult, x)
+				y = self.add(y, "00000001")
+			if x[0] == "1":
+				x = self.add("1" + self.toBinary(int(x, 2) << 1),Px)[1:] 
+			else:
+				x = self.toBinary(int(x, 2) << 1)
+			y = self.toBinary(int(y, 2) >> 1)
 		return mult
 		#END TODO
 
@@ -66,7 +73,11 @@ class BinaryDomains():
 			string: Résultat de l'inversion en binaire.
 		"""
 		#BEGIN TODO
-		return []
+		inv = "00000001"
+		for i in range(len(x)-1):
+			x = self.multiply(x, x)
+			inv = self.multiply(inv, x)
+		return inv
 		#END TODO
 
 class ReedSolomon():
@@ -138,17 +149,17 @@ class ReedSolomon():
 
 if __name__ == "__main__":
 	test1 = ["10100011", 
-			"10110100", 
-			"00010111"]
+			 "10110100", 
+			 "00010111"]
 	test2 = ["10101111", 
-			"11000110", 
-			"01101001"]
+			 "11000110", 
+			 "01101001"]
 	test3 = ["00010100",
-			"00000011",
-			"00010111"]
+			 "00000011",
+			 "00010111"]
 	test4 = ["00100111",
-			"00111011",
-			"00011100"]
+			 "00111011",
+			 "00011100"]
 	test5 = ["11001101", 
 			 "01001001", 
 			 "01100111"]

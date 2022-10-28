@@ -1,21 +1,36 @@
-mult = "00000000"
+def multiply(self, x, y):
+		"""
+		Multiplie deux séquences binaires (x*y) reçues sous la forme de string, en utilisant
+        le polynôme irréductible choisi pour le corps.
+
+		Example : "10111001" * "10010100" = "10110010".
+
+		Args:
+			x (string): Premier élément de la multiplication.
+			y (string): Deuxième élément de la multiplication.
+
+		Returns:
+			string: Résultat de la multiplication x*y en binaire.
+		"""
+		#BEGIN TODO
+		mult = "00000000"
 		Px = "101001101"
-		iter = 0 
-		while y != "00000000" and iter != 30:
-			if y[0] == "1":
+		while y != "00000000":
+			if y[-1] == "1":
 				mult = self.add(mult, x)
 				y = self.add(y, "00000001")
-			leftShift = "" #11001101 becomes 10011011
-			for bit in range(1,len(x)):
-				leftShift += x[bit]
-			leftShift += x[0]
-			rightShift = y[-1]   #11001101 becomes 11100110
-			for bit in range(0,len(y)-1):
-				rightShift += y[bit]
-			
-			x = self.toBinary(int(Px,2)%int(leftShift,2) )
-			y = rightShift
-			iter+=1
+			#leftshift x '11001101' becomes '110011010'
+			x+='0'  #we have 9 bits with 0 at the end but we don't know what the 1st character is
+			if x[0] == '0': #if it's 0 we have to continue left shifting until we have a 1 at the 1st char
+				while x[0] == "0":	
+					x = x[1:]+'0' 
+			#here in any case we have a string of 9 bits starting with 1 as
+			x = self.add(x, Px)[1:] #we add it to Px to get the modulo and we keep an octet since the 1st char is 0 after the addition 
+			y = '0'+y[:-1]   #11001101 becomes 01100110
+			print(y)
+		print(f'what I get: {mult}\nwhat I should get: 01100111')
+		print(f"In base 10 what I have is {int(mult,2)} vs {int('01100111',2)}")
+		return mult
 
 
 mult = ''
@@ -42,3 +57,22 @@ mult = ''
 				mult = self.add(str(mult), str(temp[tempIndx-2]))
 			else:
 				pass
+
+mult = "00000000"
+		Px = "101001101"
+		while y != "00000000":
+			if y[-1] == "1":
+				mult = self.add(mult, x)
+				y = self.add(y, "00000001")
+			#leftshift x '11001101' becomes '110011010'
+			x+='0'  #we have 9 bits with 0 at the end but we don't know what the 1st character is
+			if x[0] == '0': #if it's 0 we have to continue left shifting until we have a 1 at the 1st char
+				while x[0] == "0":	
+					x = x[1:]+'0' # 110011010 becomes 100110100
+			#here in any case we have a string of 9 bits starting with 1 as
+			x = self.add(x, Px)[1:] #we add it to Px to get the modulo and we keep an octet since the 1st char is 0 after the addition 
+			y = '0'+y[:-1]   #11001101 becomes 01100110
+			print(y)
+		print(f'what I get: {mult}\nwhat I should get: 01100111')
+		print(f"In base 10 what I have is {int(mult,2)} vs {int('01100111',2)}")
+		return mult
