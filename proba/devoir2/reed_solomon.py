@@ -141,17 +141,15 @@ class ReedSolomon():
 		bd = BinaryDomains()
 		P = [] #augmented matrix (V|a)
 		d = [] #vector containing the message 
-		#we have to create the normal matrix V
+		#we have to create the normal matrix V and add AXi to each row
 		for z in range(self.k):
-			row = [bd.toBinary(1)]
+			row = ["00000001"]
 			pow = X[z]
 			for lolz in range(self.k-1):
 				row.append(pow)
 				pow = bd.multiply(pow,X[z])
+			row.append(AX[z])
 			P.append(row)
-		#we add the vector a to the matrix V
-		for indx in range(self.k):
-			P[indx].append(AX[indx])
 		#gaussian_elimination algorithm 2 of the document
 		for i in range(self.k):
 			for j in range(self.k):
@@ -173,7 +171,7 @@ class ReedSolomon():
 		
 		Returns:
 			(bool): True s'il est possible de décoder le message corrompu, False sinon.
-			(liste de string de taille n): Le message décodé. (si bool = False, alors retourner []).
+			(liste de string de taille n): Le message décodé. (si bool = False, alors retourner []).			
 		"""
 		#BEGIN TODO
 		nonCorrupted = []
