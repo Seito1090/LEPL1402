@@ -1,0 +1,28 @@
+int height = 0;
+        int min = 0;
+        int max = 0;
+        int floor = 0;
+        for (int i = 0; i < slopes.length-1; i++) {
+            int temp = slopes[i+1]; // check the next value to know if we hit a limit
+            // if there's no change in direction then we're still on a slope
+            if (slopes[i] == temp){
+                height += slopes[i];
+                if (floor + height == 0){
+                    if (floor < min){
+                        min = -floor+1;
+                    }
+                    if (floor > max){
+                        max = floor+1;
+                    }
+                }
+            } else { // if there's a change in direction then we're at a limit
+                if (height > max){ // if the height is greater than the current max then we've hit a mountain
+                    floor = height;
+                }
+                if (height < min){ // if the height is less than the current min then we've hit a valley
+                    floor = height;
+                }
+                height = 0;
+            }
+        }
+        return new int[]{min, max};
