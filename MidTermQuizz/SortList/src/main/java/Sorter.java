@@ -24,6 +24,12 @@ public class Sorter {
             //they are in the increasing order.
 
             // TODO
+            for (int i = 0; i<list.getSize(); i++){
+                if (list.getFirst() > list.getSecond() && i < list.getSize()-1-iter){
+                    list.swap();
+                }
+                list.pop();
+            }
         }
 
         // here, if you followed the invariant proposed above, the list should be sorted!
