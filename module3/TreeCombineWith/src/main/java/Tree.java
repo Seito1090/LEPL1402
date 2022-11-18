@@ -9,7 +9,6 @@ public class Tree {
     public Tree combineWith(Tree o){
         // YOUR CODE HERE
         if (o == null){
-            System.out.println("it is null dummy");
             return this;
         }
         if (this.root == null){
