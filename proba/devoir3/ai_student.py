@@ -41,7 +41,7 @@ def ai_student(board, player):
   but let's try to at least make a somewhat decent move while we're at it lol
   thanks to the 2nd point of the homework we have a good estimate of the time
   it takes to run the game x times'''
-  if cpBoard[5][3] == 0:
+  if cpBoard[5][3] == 0 or cpBoard[4][3] == 0:
     return 3
   noAvailibleSpots = np.count_nonzero(cpBoard == 0) - 1
   x = 100 if noAvailibleSpots // 2 > 5 else 1000 #:D (we can change this value to make the AI better or worse)
@@ -53,7 +53,8 @@ def ai_student(board, player):
       #we run the game x times and count the number of wins we get
       if result == player:
         nbrWins[column] += 1
-  maxChance = np.amax(nbrWins / x)
+  nbrWins /= x
+  maxChance = np.amax(nbrWins)
   maxIndx = np.where(nbrWins == maxChance)[0]
   return possibleColumns[maxIndx[0]]
 
