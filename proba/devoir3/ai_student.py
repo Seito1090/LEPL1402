@@ -7,14 +7,10 @@ def ai_student(board, player):
     tst = np.copy(brd)
     for x in range(mvs):
       mv1 = connect4.ai_random(tst, 1)
-      if brd[0][mv1] != 0:
-            print('ERROR: The chosen column is already full.')
       tst = connect4.update_board(tst, mv1, 1)
       if connect4.check_win(tst, mv1, 1):
             return 1
       mv2 = connect4.ai_random(tst, 2)
-      if brd[0][mv2] != 0:
-            print('ERROR: The chosen column is already full.')
       tst = connect4.update_board(tst, mv2, 2)
       if connect4.check_win(tst, mv2, 2):
             return 2
@@ -44,7 +40,7 @@ def ai_student(board, player):
   if cpBoard[5][3] == 0 or cpBoard[4][3] == 0:
     return 3
   noAvailibleSpots = np.count_nonzero(cpBoard == 0) - 1
-  x = 100 if noAvailibleSpots // 2 > 5 else 1000 #:D (we can change this value to make the AI better or worse)
+  x = 10  #:D (we can change this value to make the AI better or worse)
   nbrWins = np.zeros(len(possibleColumns))
   for column in range(len(possibleColumns)):
     nxtBoard = np.copy(connect4.update_board(cpBoard, possibleColumns[column], player))
