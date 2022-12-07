@@ -33,7 +33,7 @@ public class Evaluator {
         HashMap<String, Boolean> result = new HashMap<>();
         boolean resultXOR = xor_gate().apply(a, b);
         result.put("SUM", xor_gate().apply(resultXOR, carry_in));
-        result.put("CarryOut", or_gate().apply(and_gate().apply(resultXOR, carry_in), and_gate().apply(a, b)));
+        result.put("carry_out", or_gate().apply(and_gate().apply(resultXOR, carry_in), and_gate().apply(a, b)));
         return result;
     }
 }
